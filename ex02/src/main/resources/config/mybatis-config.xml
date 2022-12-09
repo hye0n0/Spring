@@ -8,7 +8,8 @@
 	<setting name="jdbcTypeForNull" value="VARCHAR"/>
 	</settings>
 	<typeAliases>
-		<typeAlias type="com.company.app.emp.EmpVO" alias="emp"/>
+		<typeAlias type="com.company.app.emp.service.EmpVO" alias="emp"/>
+		<typeAlias type="com.company.app.dept.service.DeptVO" alias="dept"/>
 		<package name="com.company.app"/> 
 	</typeAliases>
 </configuration>

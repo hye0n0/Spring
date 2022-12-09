@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.micol.web.board.mapper.BoardMapper">
+	<sql  id="condition">
+		<where>
+			<if test="title">
+				AND TITLE LIKE '%' || #{title} || '%'
+			</if>
+			<if test="writer">
+				WRITER = #{writer}
+			</if>
+		</where>
+	</sql>
+	<select id="getBoardAll" >
+		SELECT * FROM TBL_BOARD
+		<include refid="condition"/>
+	</select>
+	<select id="countBoard" >
+		SELECT count(*) FROM TBL_BOARD
+		<include refid="condition"/>
+	</select>
+	<select id="getBoard" >
+		SELECT * FROM TBL_BOARD WHERE BNO = #{bno}
+	</select>
+	<insert id="insertBoard">
+		INSERT INTO TBL_BOARD(BNO, TITLE, CONTENT, WRITER)
+		VALUES (seq_board.nextval, #{title}, #{content}, #{writer});
+	</insert>
+	<update id="updateBoard">
+		UPDATE TBL_BOARD
+		SET TITLE = #{title}
+		AND CONTENT = #{content}
+		WHERE BNO = #{bno}
+	</update>
+	<delete id="deleteBoard">
+		DELETE FROM TBL_BOARD
+		WHERE BNO = #{bno}
+	</delete>
+</mapper>

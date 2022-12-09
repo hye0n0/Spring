@@ -1,0 +1,19 @@
+package ex04;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.context.annotation.Scope;
+
+@Configuration
+public class JavaConfig {
+	
+	@Bean
+	@Scope("singleton")
+	//@Lazy
+	public BoardService boardservice() {
+		return new BoardServiceImpl();
+	}
+	
+	
+}
