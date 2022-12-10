@@ -2,10 +2,12 @@ package com.company.app.emp.service;
 
 import java.util.List;
 
+import com.company.app.common.Paging;
+
 public interface EmpService {
 	
 	//전체조회
-	List<EmpVO> getEmpAll(EmpVO vo);
+	List<EmpVO> getEmpAll(EmpVO vo, Paging paging);
 	//단건조회
 	EmpVO getEmp(String id);
 	//등록

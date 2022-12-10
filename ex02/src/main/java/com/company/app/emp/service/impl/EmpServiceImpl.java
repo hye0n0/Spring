@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import com.company.app.common.Paging;
 import com.company.app.emp.mapper.EmpMapper;
 import com.company.app.emp.service.EmpService;
 import com.company.app.emp.service.EmpVO;
@@ -16,7 +17,10 @@ public class EmpServiceImpl implements EmpService{
 	@Autowired EmpMapper empMapper;
 	
 	@Override
-	public List<EmpVO> getEmpAll(EmpVO vo) {
+	public List<EmpVO> getEmpAll(EmpVO vo, Paging paging) {
+		paging.setTotalRecord(empMapper.count(vo)); // start, end
+		vo.setFirst(paging.getFirst());
+		vo.setLast(paging.getLast());
 		return empMapper.getEmpAll(vo);
 	}
 

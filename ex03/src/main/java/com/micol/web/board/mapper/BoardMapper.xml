@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.micol.web.board.mapper.BoardMapper">
-	<sql  id="condition">
+	<sql id="condition">
 		<where>
 			<if test="title">
 				AND TITLE LIKE '%' || #{title} || '%'
@@ -11,28 +11,41 @@
 			</if>
 		</where>
 	</sql>
-	<select id="getBoardAll" >
-		SELECT * FROM TBL_BOARD
-		<include refid="condition"/>
+	
+	<select id="getBoardAll" resultType="boardVO" parameterType="BoardVO">
+		SELECT * FROM ( SELECT ROWNUM RN, A.* FROM (
+		SELECT * FROM TBL_BOARD ORDER BY BNO
+		<include refid="condition" />
+		<![CDATA[
+		) A WHERE ROWNUM <= #{last} ) WHERE RN >= #{first}
+		]]>
 	</select>
-	<select id="countBoard" >
+	
+	<select id="countBoard" resultType="int" parameterType="BoardVO">
 		SELECT count(*) FROM TBL_BOARD
-		<include refid="condition"/>
+		<include refid="condition" />
 	</select>
-	<select id="getBoard" >
+	
+	<select id="getBoard" resultType="boardVO" parameterType="BoardVO">
 		SELECT * FROM TBL_BOARD WHERE BNO = #{bno}
 	</select>
-	<insert id="insertBoard">
-		INSERT INTO TBL_BOARD(BNO, TITLE, CONTENT, WRITER)
-		VALUES (seq_board.nextval, #{title}, #{content}, #{writer});
+	
+	<insert id="insertBoard" parameterType="BoardVO">
+		INSERT INTO TBL_BOARD(BNO, TITLE, CONTENT, WRITER,
+		UPDATEDATE)
+		VALUES (seq_board.nextval, #{title}, #{content}, #{writer},
+		null);
 	</insert>
-	<update id="updateBoard">
+	
+	<update id="updateBoard" parameterType="BoardVO">
 		UPDATE TBL_BOARD
 		SET TITLE = #{title}
-		AND CONTENT = #{content}
+		AND CONTENT =
+		#{content}
 		WHERE BNO = #{bno}
 	</update>
-	<delete id="deleteBoard">
+	
+	<delete id="deleteBoard" parameterType="BoardVO">
 		DELETE FROM TBL_BOARD
 		WHERE BNO = #{bno}
 	</delete>

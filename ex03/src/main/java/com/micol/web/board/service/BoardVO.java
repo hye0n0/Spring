@@ -10,4 +10,7 @@ public class BoardVO {
 	String writer;
 	String regdate;
 	String updatedate;
+	
+	Integer first = 1;
+	Integer last = 10;
 }

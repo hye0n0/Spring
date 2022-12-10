@@ -39,9 +39,13 @@
 
 <!-- 전체조회 -->
 <select id="getEmpAll" resultType="empVO">
+SELECT * FROM ( SELECT ROWNUM RN, A.* FROM (
 SELECT *
 FROM employees
 	<include refid="condition"/>
+<![CDATA[
+) A WHERE ROWNUM <= #{last} ) WHERE RN >= #{first}
+]]>
 </select>
 <select id="getEmp"
 parameterType="string"

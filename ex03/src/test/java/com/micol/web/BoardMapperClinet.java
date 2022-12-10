@@ -26,8 +26,8 @@ public class BoardMapperClinet {
 		
 		List<BoardVO> list = mapper.getBoardAll(vo);
 		if(list != null) {
-			list.forEach(emp -> {
-				System.out.println(emp.getTitle());
+			list.forEach(board -> {
+				System.out.println(board.getTitle());
 			});
 		}
 	}

@@ -6,9 +6,10 @@
 </select>
 <insert id="insertReply" parameterType="replyVO">
 	INSERT INTO TBL_REPLY(RNO, BNO, REPLY, REPLYER, UPDATEDATE)
-		VALUES (seq_board.nextval, #{title}, #{content}, #{writer}, null);
+		VALUES (seq_board.nextval, #{BNO}, #{REPLY}, #{REPLYER}, null)
 </insert>
 <delete id="deleteReply" parameterType="int">
-
+	DELETE FROM tbl_reply
+		WHERE RNO = #{RNO}
 </delete>
 </mapper>
