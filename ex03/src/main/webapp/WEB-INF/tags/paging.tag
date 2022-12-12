@@ -14,7 +14,7 @@
 		<li class="page-item"><a href="javascript:${jsFunc}(${i})" class="page-link">${i}</a>
 	</c:if>
 	<c:if test="${i == paging.page}">
-		<li class="active">${i}
+		<li class="page-item active" aria-current="page"><a class="page-link" href="#">${i}</a>
 	</c:if>
 </c:forEach>
 <c:if test="${paging.endPage<paging.lastPage}">
