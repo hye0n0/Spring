@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="co.yedam.prjt.emp.mapper.DeptMapper">
+<select id="count" resultType="int">
+	SELECT count(*) FROM DEPARTMENTS
+</select>
+<select id="getDeptAll" resultType="deptVO"  parameterType="deptVO">
+SELECT * FROM ( SELECT ROWNUM RN, A.* FROM (
+	SELECT * FROM DEPARTMENTS ORDER BY DEPARTMENT_ID DESC
+	<![CDATA[
+) A WHERE ROWNUM <= #{last} ) WHERE RN >= #{first}
+]]>
+</select>
+<select id="getDept" resultType="deptVO"  parameterType="int">
+SELECT *
+FROM DEPARTMENTS
+WHERE DEPARTMENT_ID = #{value}
+</select>
+<insert id="insertDept" parameterType="deptVO">
+	 INSERT INTO DEPARTMENTS(DEPARTMENT_ID,DEPARTMENT_NAME,MANAGER_ID,LOCATION_ID)
+	 VALUES (DEPARTMENTS_SEQ.nextval,#{departmentName},#{managerId},#{locationId})
+</insert>
+<update id="updateDept" parameterType="deptVO">
+UPDATE DEPARTMENTS
+	SET DEPARTMENT_NAME = #{departmentName},
+	MANAGER_ID = #{managerId},
+	LOCATION_ID = #{locationId}
+	WHERE DEPARTMENT_ID = #{employeeId}
+</update>
+<delete id="deleteDept" parameterType="int">
+	DELETE FROM DEPARTMENTS
+		WHERE DEPARTMENT_ID = #{value}
+</delete>
+<select id="getManagers" resultType="map">
+	select employee_id "employeeId",
+			FIRST_NAME "firstName",
+			LAST_NAME	"lastName"
+		from employees
+</select>
+</mapper>
