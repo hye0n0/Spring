@@ -40,7 +40,7 @@ public class DeptController {
 	@GetMapping("/update")
 	public String update(Model model, @RequestParam int id) {
 		//단건조회
-		model.addAttribute("emp", deptService.getDept(id));
+		model.addAttribute("dept", deptService.getDept(id));
 		model.addAttribute("managers", deptService.getManagers());
 		return "emp/update";
 	}

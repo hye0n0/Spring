@@ -13,21 +13,21 @@ ul {
 </style>
 </head>
 <body>
-	<h3>사원조회</h3>
+	<h3>부서조회</h3>
 	<ul>
-		<li>사번: ${emp.employeeId}
-		<li>이름: ${emp.firstName} ${emp.lastName}
-		<li>이메일: ${emp.email}
-		<li>입사일자: ${emp.hireDate}
+		<li>departmentId: ${dept.departmentId}
+		<li>departmentName: ${dept.departmentName}
+		<li>managerId: ${dept.managerId}
+		<li>locationId: ${dept.locationId}
 	</ul>
 	<button id="updateBtn">사원수정페이지로 이동</button>
 	<form name="frm" method="post" action="delete">
-		<input type="hidden" name="id" value="${emp.employeeId}">
+		<input type="hidden" name="id" value="${dept.departmentId}">
 		<button id="deleteBtn">사원삭제</button>
 	</form>
 	<script type="text/javascript">
 		updateBtn.addEventListener("click", ev=>{
-			location.href='update?id=${emp.employeeId}'
+			location.href='update?id=${dept.departmentId}'
 		})
 	</script>
 </body>

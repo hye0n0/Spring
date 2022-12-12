@@ -8,17 +8,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h3>사원등록</h3>
+	<h3>글등록</h3>
 	<form action="./insert" method="post">
-		firstName: <input name="firstName"><br> lastName: <input
-			name="lastName"><br> email: <input name="email"><br>
-		hireDate: <input type="date" name="hireDate"><br>
-		<!-- 참조키 : select, radio, checkbox -->
-		jobId: <select name="jobId">
-			<c:forEach items="${jobs}" var="job">
-				<option value="${job.jobId }">${job.jobTitle}</option>
-			</c:forEach>
-		</select><br>
+		title: <input name="title"><br> 
+		content: <input name="content"><br> 
+		writer: <input name="writer"><br>
 		<button>등록</button>
 	</form>
 </body>

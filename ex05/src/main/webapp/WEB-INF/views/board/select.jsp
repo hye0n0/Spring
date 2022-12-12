@@ -13,21 +13,23 @@ ul {
 </style>
 </head>
 <body>
-	<h3>사원조회</h3>
+	<h3>글조회</h3>
 	<ul>
-		<li>사번: ${emp.employeeId}
-		<li>이름: ${emp.firstName} ${emp.lastName}
-		<li>이메일: ${emp.email}
-		<li>입사일자: ${emp.hireDate}
+		<li>글번호: ${board.bno}
+		<li>제목: ${board.title}
+		<li>내용: ${board.content}
+		<li>작성자: ${board.writer}
+		<li>작성일자: ${board.regdate}
+		<li>수정일자: ${board.updatedate}
 	</ul>
-	<button id="updateBtn">사원수정페이지로 이동</button>
+	<button id="updateBtn">글수정페이지로 이동</button>
 	<form name="frm" method="post" action="delete">
-		<input type="hidden" name="id" value="${emp.employeeId}">
-		<button id="deleteBtn">사원삭제</button>
+		<input type="hidden" name="id" value="${board.bno}">
+		<button id="deleteBtn">글삭제</button>
 	</form>
 	<script type="text/javascript">
 		updateBtn.addEventListener("click", ev=>{
-			location.href='update?id=${emp.employeeId}'
+			location.href='update?id=${board.bno}'
 		})
 	</script>
 </body>

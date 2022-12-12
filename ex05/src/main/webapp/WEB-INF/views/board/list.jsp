@@ -18,21 +18,22 @@
 </head>
 <body>
 	결과: ${result }
-	<h3>부서목록</h3>
+	<h3>글목록</h3>
 
-	<a href="./insert">부서등록으로 이동</a>
+	<a href="./insert">글등록으로 이동</a>
 	<table>
 		<tr>
-			<th>사번1</th>
-			<th>사번2</th>
-			<th>이름</th>
+			<th>글번호</th>
+			<th>제목</th>
+			<th>작성자</th>
+			<th>작성일자</th>
 		</tr>
-		<c:forEach items="${emps }" var="emp">
+		<c:forEach items="${boards }" var="board">
 			<tr>
-				<td><a href="select?id=${emp.employeeId}">${emp.employeeId}</a></td>
-				<td><a
-					href="${pageContext.request.contextPath }/emp/select?id=${emp.employeeId}">${emp.employeeId}</a></td>
-				<td>${emp.firstName}${emp.lastName}</td>
+				<td><a href="select?id=${board.bno}">${board.bno}</a></td>
+				<td>${board.title}</td>
+				<td>${board.writer}</td>
+				<td>${board.regdate}</td>
 			</tr>
 		</c:forEach>
 	</table>

@@ -7,14 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h3>사원수정</h3>
+	<h3>글수정</h3>
 		<form action="./update" method="post">
-		employeeId: <input name="employeeId" readonly="readonly" value="${emp.employeeId}"><br>
-		firstName: <input name="firstName" value="${emp.firstName}"><br>
-		lastName: <input name="lastName" value="${emp.lastName}"><br>
-		email: <input name="email" value="${emp.email}"><br>
-		hireDate: <input type="date" name="hireDate" value="${emp.hireDate}"><br>
-		jobId: <input name="jobId" value="${emp.jobId}"><br>
+		글번호: <input name="bno" readonly="readonly" value="${board.bno}"><br>
+		제목: <input name="title" value="${board.title}"><br>
+		내용: <input name="content" value="${board.content}"><br>
+		작성자: <input name="writer" value="${board.writer}"><br>
 		<button>수정</button>
 	</form>
 </body>
