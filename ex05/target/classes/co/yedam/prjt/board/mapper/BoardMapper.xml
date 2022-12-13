@@ -26,15 +26,14 @@
 		<include refid="condition" />
 	</select>
 	
-	<select id="getBoard" resultType="boardVO" parameterType="BoardVO">
-		SELECT * FROM TBL_BOARD WHERE BNO = #{bno}
+	<select id="getBoard" resultType="boardVO">
+		SELECT * FROM TBL_BOARD WHERE BNO = #{value}
 	</select>
 	
 	<insert id="insertBoard" parameterType="BoardVO">
 		INSERT INTO TBL_BOARD(BNO, TITLE, CONTENT, WRITER,
 		UPDATEDATE)
-		VALUES (seq_board.nextval, #{title}, #{content}, #{writer},
-		null);
+		VALUES (seq_board.nextval, #{title}, #{content}, #{writer});
 	</insert>
 	
 	<update id="updateBoard" parameterType="BoardVO">

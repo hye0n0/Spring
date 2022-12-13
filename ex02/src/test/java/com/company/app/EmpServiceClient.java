@@ -12,22 +12,27 @@ import com.company.app.emp.service.EmpVO;
 import lombok.extern.log4j.Log4j;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "file:src/main/webapp/WEB-INF/spring/root-context.xml")
+@ContextConfiguration(locations = "classpath:/spring/*-context.xml")
 @Log4j
 public class EmpServiceClient {
 
 	@Autowired
 	EmpService service;
 	
-	@Test
+	//@Test
 	public void deleteEmp() {
 		int r = service.deleteEmp("207");
 		log.info(r + "건 삭제됨");
 	}
 	
-//	@Test
+	//@Test
 	public void getEmp() {
 		EmpVO vo = service.getEmp("100");
-		log.debug(vo);
+		//log.debug(vo);
+	}
+	
+	@Test
+	public void addData() {
+		service.addData("abcdeg");
 	}
 }

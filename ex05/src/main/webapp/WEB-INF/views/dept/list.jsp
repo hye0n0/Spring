@@ -28,7 +28,7 @@
 		</tr>
 		<c:forEach items="${depts }" var="dept">
 			<tr>
-				<td><a href="select?id=${dept.departmentId}">${dept.departmentId}</a></td>
+				<td><a href="select?departmentId=${dept.departmentId}">${dept.departmentId}</a></td>
 				<td><a
 					href="${pageContext.request.contextPath }/dept/select?id=${dept.departmentName}">${dept.departmentName}</a></td>
 			</tr>

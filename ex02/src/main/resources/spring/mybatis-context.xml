@@ -9,7 +9,7 @@
 		<property name="configLocation"
 			value="classpath:/config/mybatis-config.xml" />
 		<property name="mapperLocations"
-			value="classpath*:com/company/app/**/mapper/*Mapper.xml" />
+			value="classpath*:com/company/app/**/mapper/*.xml" />
 	</bean>
 
 	<bean id="sqlSession"

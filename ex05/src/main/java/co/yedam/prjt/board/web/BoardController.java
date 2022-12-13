@@ -21,13 +21,10 @@ public class BoardController {
 	
 	@Autowired
 	BoardService boardService;
-	
-	
 
 	//등록페이지
 	@GetMapping("/insert")
 	public void insert(Model model) {
-//		model.addAttribute("jobs", mapper.getJobs());
 	}
 	
 	//등록
@@ -40,9 +37,9 @@ public class BoardController {
 	
 	//수정페이지
 	@GetMapping("/update")
-	public String update(Model model, @RequestParam BoardVO vo) {
+	public String update(Model model, int bno) {
 		//단건조회
-		model.addAttribute("board", boardService.getBoard(vo));
+		model.addAttribute("board", boardService.getBoard(bno));
 		//model.addAttribute("managers", deptService.getManagers());
 		return "board/update";
 	}
@@ -73,8 +70,8 @@ public class BoardController {
 	}
 	//단건조회 페이지
 	@GetMapping("/select")
-	public String select(Model model,@RequestParam BoardVO vo) {
-		model.addAttribute("board", boardService.getBoard(vo));
+	public String select(Model model,int bno) {
+		model.addAttribute("board", boardService.getBoard(bno));
 		return "board/select";
 	}
 }

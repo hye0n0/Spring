@@ -3,6 +3,7 @@ package com.company.app.emp.mapper;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 
 import com.company.app.emp.service.EmpVO;
@@ -21,6 +22,11 @@ public interface EmpMapper {
 	
 	@Select("select * from departments")
 	public List<Map<String, Object>> getDept();
-	
 	public List<Map<String, Object>> getDeptAll();
+	
+	@Insert("insert into tbl_sample (col1) values (#{data})")
+	public int insertCol1(String data);
+	
+	@Insert("insert into tbl_sample2 (col1) values (#{data})")
+	public int insertCol2(String data);
 }

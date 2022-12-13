@@ -16,4 +16,6 @@ public interface EmpService {
 	int updateName(EmpVO vo);
 	//삭제
 	int deleteEmp(String id);
+	
+	int addData(String data);
 }
