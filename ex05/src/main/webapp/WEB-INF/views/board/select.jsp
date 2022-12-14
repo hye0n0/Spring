@@ -57,7 +57,18 @@ ul {
 		
 		//댓글 삭제
 		function replyDelete() {
-			
+			$("tbody").on("click", "#btnDelete", function(){
+				let rno = $(this).closest("tr").data("id")
+				let tr = $(this).closest("tr")
+				$.ajax({
+					url: path+'/replys/'+ rno,
+					method: "delete"
+				}).then(res => {
+					alert("삭제완료")
+					tr.remove();
+				})
+				
+			})
 		}
 		
 		function makeTr(reply){

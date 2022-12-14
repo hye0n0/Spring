@@ -4,12 +4,28 @@
 <select id="getReplyAll" resultType="replyVO" parameterType="int">
 	SELECT * FROM TBL_REPLY WHERE BNO = #{value}
 </select>
+<select id="getReply" resultType="replyVO" parameterType="int">
+	SELECT * FROM TBL_REPLY WHERE RNO = #{value}
+</select>
 <insert id="insertReply" parameterType="replyVO">
-	INSERT INTO TBL_REPLY(RNO, BNO, REPLY, REPLYER, UPDATEDATE)
-		VALUES (seq_board.nextval, #{BNO}, #{REPLY}, #{REPLYER}, null)
+<selectKey keyProperty="rno" resultType="int" order="BEFORE">
+	SELECT SEQ_REPLY.NEXTVAL AS RNO FROM DUAL
+</selectKey>
+	INSERT INTO TBL_REPLY(RNO, BNO, REPLY, REPLYER)
+		VALUES (#{rno}, #{bno}, #{reply}, #{replyer})
 </insert>
+<update id="updateReply" parameterType="replyVO">
+<selectKey keyProperty="updatedate" resultType="string">
+	SELECT SYSDATE AS UPDATEDATE FROM DUAL
+</selectKey>
+		UPDATE TBL_REPLY
+		SET REPLY = #{reply}
+		AND REPLYER = #{replyer}
+		AND UPDATEDATE = #{updatedate}
+		WHERE RNO = #{rno}
+</update>
 <delete id="deleteReply" parameterType="int">
 	DELETE FROM tbl_reply
-		WHERE RNO = #{RNO}
+		WHERE RNO = #{rno}
 </delete>
 </mapper>

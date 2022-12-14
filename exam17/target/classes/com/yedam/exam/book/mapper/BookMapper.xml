@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yedam.exam.book.mapper.BookMapper">
+<select id="getbookNo" resultType="int">
+SELECT MAX(BOOK_NO)+1 FROM BOOK_TBL_06
+</select>
+<select id="getBookAll" resultType="bookVO">
+SELECT * FROM BOOK_TBL_06 ORDER BY BOOK_NO
+</select>
+<insert id="insertBook" parameterType="bookVO">
+INSERT INTO BOOK_TBL_06
+		VALUES (#{bookNo}, #{bookName}, #{bookCoverimg}, #{bookDate}, #{bookPrice}, #{bookPublisher}, #{bookInfo})
+</insert>
+<select id="getRentAll" resultType="bookVO">
+SELECT BOOK_TBL_06.BOOK_NO AS BOOK_NO, BOOK_TBL_06.BOOK_NAME AS BOOK_NAME, sum(RENT_TBL_06.RENT_PRICE) AS RENT_SUM, count(RENT_TBL_06.BOOK_NO) AS BOOK_COUNT
+FROM BOOK_TBL_06, RENT_TBL_06
+where BOOK_TBL_06.BOOK_NO = RENT_TBL_06.BOOK_NO
+group by BOOK_TBL_06.BOOK_NO, BOOK_TBL_06.BOOK_NAME ORDER BY BOOK_TBL_06.BOOK_NO
+</select>
+</mapper>
